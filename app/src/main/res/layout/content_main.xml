@@ -59,6 +59,8 @@
                     android:layout_marginRight="8dp"
                     app:cardElevation="8dp"
                     app:cardCornerRadius="8dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     >
 
                 <LinearLayout
@@ -99,6 +101,8 @@
                     android:layout_marginRight="8dp"
                     app:cardElevation="8dp"
                     app:cardCornerRadius="8dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     >
 
                 <LinearLayout
@@ -142,6 +146,8 @@
                     android:layout_marginRight="8dp"
                     app:cardElevation="8dp"
                     app:cardCornerRadius="8dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     >
 
                 <LinearLayout
@@ -182,6 +188,8 @@
                     android:layout_marginRight="8dp"
                     app:cardElevation="8dp"
                     app:cardCornerRadius="8dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     >
 
                 <LinearLayout

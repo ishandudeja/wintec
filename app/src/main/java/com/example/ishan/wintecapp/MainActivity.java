@@ -102,8 +102,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_admin) {
+            Intent i = new Intent(MainActivity.this, TaskMasterActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -121,8 +122,8 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent = new Intent(MainActivity.this,ModuleListActivity.class);
-                    intent.putExtra("info","This is activity from card item index  "+finalI);
+                    Intent intent = new Intent(MainActivity.this, ModuleListActivity.class);
+                    intent.putExtra("info", "This is activity from card item index  " + finalI);
                     startActivity(intent);
 
                 }

@@ -16,7 +16,6 @@
             android:theme="@style/AppTheme">
         <activity
                 android:name=".MainActivity"
-                android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,19 +23,23 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ModuleListActivity">
+        <activity
+                android:name=".ModuleListActivity"
+                android:label="My Learning"
+                android:parentActivityName=".MainActivity">
         </activity>
         <activity
                 android:name=".LoginActivity"
                 android:label="@string/title_activity_login">
         </activity>
-        <activity android:name=".StudentMasterActivity">
-        </activity>
         <activity
                 android:name=".TaskMasterActivity"
-                android:label="@string/title_activity_task_master">
+                android:label="@string/title_activity_task_master"
+                android:parentActivityName=".MainActivity">
         </activity>
         <activity android:name=".SemesterActivity">
+        </activity>
+        <activity android:name=".AboutAtivity">
         </activity>
     </application>
 
