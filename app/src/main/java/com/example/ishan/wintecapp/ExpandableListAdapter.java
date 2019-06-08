@@ -1,5 +1,8 @@
 package com.example.ishan.wintecapp;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.Intent;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,9 +52,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
          description=convertView.findViewById(R.id.mDescription);
          description.setText(children.get_description());
 
-        convertView.setOnClickListener(new OnClickListener() {
+        convertView.findViewById(R.id.moduleCard).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(activity,ModuleActivity.class);
+                 activity.startActivity(intent);
                 Toast.makeText(activity, children.get_title(),
                         Toast.LENGTH_SHORT).show();
             }

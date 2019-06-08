@@ -19,7 +19,8 @@
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:focusable="true"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:id="@+id/moduleCard">
 
         <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"

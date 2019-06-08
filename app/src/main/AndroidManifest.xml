@@ -39,7 +39,13 @@
         </activity>
         <activity android:name=".SemesterActivity">
         </activity>
-        <activity android:name=".AboutAtivity">
+        <activity android:name=".AboutAtivity"
+                  android:label="About App"
+                  android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".ModuleActivity"
+                  android:label="Dashboard"
+                  android:parentActivityName=".ModuleListActivity">
         </activity>
     </application>
 
