@@ -5,28 +5,21 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.app.ListFragment;
+import android.view.*;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ModuleMasterFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ModuleMasterFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class ModuleMasterFragment extends ListFragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
+    ArrayList<Module> mAllValues;
+    private ArrayAdapter<Module> mAdapter;
+    private Context mContext;
 
     private OnFragmentInteractionListener mListener;
 
@@ -34,47 +27,37 @@ public class ModuleMasterFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ModuleMasterFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ModuleMasterFragment newInstance(String param1, String param2) {
-        ModuleMasterFragment fragment = new ModuleMasterFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        setHasOptionsMenu(true);
+        populateList();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_module_master, container, false);
+       // return inflater.inflate(R.layout.fragment_module_master, container, false);
+
+        View layout = inflater.inflate(R.layout.fragment_module_master, container, false);
+        ListView listView = (ListView) layout.findViewById(android.R.id.list);
+        TextView emptyTextView = (TextView) layout.findViewById(android.R.id.empty);
+        listView.setEmptyView(emptyTextView);
+        return layout;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    @Override
+    public void onListItemClick(ListView listView, View v, int position, long id) {
+        String item = (String) listView.getAdapter().getItem(position);
+        if (getActivity() instanceof OnItem1SelectedListener) {
+            ((OnItem1SelectedListener) getActivity()).OnItem1SelectedListener(item);
         }
+        getFragmentManager().popBackStack();
     }
 
+   
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -93,15 +76,110 @@ public class ModuleMasterFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.search_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+        searchView.setQueryHint("Search");
+
+        // super.onCreateOptionsMenu(menu, inflater);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (newText == null || newText.trim().isEmpty()) {
+            resetSearch();
+            return false;
+        }
+
+        ArrayList<Module> filteredValues = new ArrayList<Module>(mAllValues);
+        for (Module value : mAllValues) {
+            if (!value.get_code().toLowerCase().contains(newText.toLowerCase())) {
+                filteredValues.remove(value);
+            }
+        }
+
+        // mAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, filteredValues);
+
+        mAdapter=new ModuleListAdapter(getActivity() , filteredValues);
+        setListAdapter(mAdapter);
+
+        return false;
+    }
+
+    public void resetSearch() {
+        //  mAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, mAllValues);
+        mAdapter= new ModuleListAdapter(getActivity() , mAllValues);
+
+        setListAdapter(mAdapter);
+    }
+
+    @Override
+    public boolean onMenuItemActionExpand(MenuItem item) {
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemActionCollapse(MenuItem item) {
+        return true;
+    }
+
+
+
+    public interface OnItem1SelectedListener {
+        void OnItem1SelectedListener(String item);
+    }
+
+    private void populateList(){
+
+        mAllValues = new ArrayList<>();
+
+        mAllValues.add( new Module( "Afghanistan","Info",7,15,"description",true,1));
+        mAllValues.add(new Module( "Åland Islands","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Albania","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Algeria","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "American Samoa","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "AndorrA","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Angola","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Anguilla","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Antarctica","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Antigua and Barbuda","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Argentina","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Armenia","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Aruba","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Australia","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Austria","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Azerbaijan","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Bahamas","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Bahrain","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Bangladesh","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Barbados","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Belarus","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Belgium","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Belize","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Benin","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Bermuda","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Bhutan","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Bolivia","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Bosnia and Herzegovina","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Botswana","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Bouvet Island","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "Brazil","Info",7,15,"description",true,1));;
+        mAllValues.add(new Module( "British Indian Ocean Territory","Info",7,15,"description",true,1));;
+     
+
+        mAdapter = new ModuleListAdapter(getActivity(), mAllValues);
+        setListAdapter(mAdapter);
+    }
+
 
 }

@@ -5,12 +5,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
+
 import android.util.SparseArray;
-import android.view.View;
+
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class ModuleListActivity extends AppCompatActivity {
     SparseArray<Semester> semesters = new SparseArray<Semester>();

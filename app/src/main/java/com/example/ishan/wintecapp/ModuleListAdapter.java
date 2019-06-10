@@ -1,17 +1,24 @@
 package com.example.ishan.wintecapp;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class ModuleListAdapter extends ArrayAdapter<Module> {
-    public ModuleListAdapter(Context context, ArrayList<Module> modules) {
-        super(context, R.layout.module_card_list ,modules);
+    public Activity activity;
+    public ModuleListAdapter(Activity context, ArrayList<Module> modules) {
+        super(context, R.layout.module_card_list, modules);
+
+        activity = context;
     }
 
     @Override
@@ -21,18 +28,26 @@ public class ModuleListAdapter extends ArrayAdapter<Module> {
         LayoutInflater myCustomInflater = LayoutInflater.from(getContext());
         View customView = myCustomInflater.inflate(R.layout.module_card_list, parent, false);
         // get references.
-        Module singleTripItem = getItem(position);
-//        TextView itemText = (TextView) customView.findViewById(R.id.buckysText);
-//        TextView datetimeText = (TextView) customView.findViewById(R.id.dateTimeText);
-//        TextView availableSetText=(TextView) customView.findViewById(R.id.availableSetText);
+        final Module singleItem = getItem(position);
+        TextView mCode = (TextView) customView.findViewById(R.id.mCode);
+        TextView mTitle = (TextView) customView.findViewById(R.id.mTitle);
+        TextView mDescription = (TextView) customView.findViewById(R.id.mDescription);
+        CardView cardView=(CardView) customView.findViewById(R.id.moduleCard) ;
         // ImageView buckysImage = (ImageView) customView.findViewById(R.id.imageView);
 
         // dynamically update the text from the array
-//        itemText.setText(singleTripItem.get_name());
-//        datetimeText.setText("Timing: " +singleTripItem.get_startDate() +" " +singleTripItem.get_startTime());
-//        availableSetText.setText("Set Available: "+singleTripItem.get_setAvailable());
-        // using the same image every time
-        //buckysImage.setImageResource(R.drawable.farrri);
+        mCode.setText(singleItem.get_code());
+        mTitle.setText("Title: " + singleItem.get_title());
+        mDescription.setText("Description: " + singleItem.get_description());
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(activity, singleItem.get_code(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
         // Now we can finally return our custom View or custom item
         return customView;
     }
