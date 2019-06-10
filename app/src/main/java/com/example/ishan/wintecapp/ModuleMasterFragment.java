@@ -12,11 +12,12 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 
-public class ModuleMasterFragment extends ListFragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
+public class ModuleMasterFragment extends ListFragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener, Serializable {
     ArrayList<Module> mAllValues;
     private ArrayAdapter<Module> mAdapter;
     private Context mContext;

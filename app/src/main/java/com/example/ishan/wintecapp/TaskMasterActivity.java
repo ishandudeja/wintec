@@ -25,18 +25,20 @@ import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TaskMasterActivity extends AppCompatActivity implements OnFragmentInteractionListener {
+public class TaskMasterActivity extends AppCompatActivity implements OnFragmentInteractionListener ,Serializable{
 
     private TextView mTextMessage;
+    Fragment fragment = null;
     Toolbar myToolbar;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment = null;
+           // Fragment fragment = null;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     fragment = new ModuleMapFragment();
@@ -65,10 +67,28 @@ public class TaskMasterActivity extends AppCompatActivity implements OnFragmentI
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.bg1));
-        loadFragment(new ModuleMapFragment());
+
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        if (savedInstanceState != null) {
+            fragment = (Fragment) savedInstanceState.getSerializable("fragment");
+           if(fragment!=null){
+               loadFragment(fragment);
+           }
+           else
+            loadFragment(new ModuleMapFragment());
+        }
+        else{
+            loadFragment(new ModuleMapFragment());
+        }
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putSerializable("fragment", (Serializable) fragment);
     }
 
 
@@ -103,8 +123,11 @@ public class TaskMasterActivity extends AppCompatActivity implements OnFragmentI
     @Override
     public void setActivityTitle(String title) {
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(title);
+        Log.i("search",title);
+
+//        ActionBar actionBar = getSupportActionBar();
+//       if(title!=null &&  !title.isEmpty())
+//      // { actionBar.setTitle(title);}
 
     }
 

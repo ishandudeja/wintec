@@ -11,9 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ModuleListAdapter extends ArrayAdapter<Module> {
+public class ModuleListAdapter extends ArrayAdapter<Module> implements Serializable {
     public Activity activity;
     public ModuleListAdapter(Activity context, ArrayList<Module> modules) {
         super(context, R.layout.module_card_list, modules);

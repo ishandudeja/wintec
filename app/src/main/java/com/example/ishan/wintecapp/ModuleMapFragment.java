@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 
+import android.os.Parcelable;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.*;
@@ -13,13 +14,14 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 
 
 
-public class ModuleMapFragment extends ListFragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
+public class ModuleMapFragment extends ListFragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener , Serializable {
 
     ArrayList<Student> mAllValues;
     private ArrayAdapter<Student> mAdapter;

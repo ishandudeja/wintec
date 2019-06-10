@@ -12,9 +12,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class StudentListAdapter extends ArrayAdapter<Student> {
+public class StudentListAdapter extends ArrayAdapter<Student> implements Serializable {
 
     public Activity activity;
 
