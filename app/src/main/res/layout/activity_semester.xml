@@ -15,6 +15,49 @@
             android:layout_height="wrap_content">
 
         <Button
+                android:text="   Semester One"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/sem1"
+                android:layout_gravity="center_vertical|center"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg1"
+                android:textAlignment="textStart"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:onClick="buttonClick"/>
+
+        <Button
+                android:text="   Semester Two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/sem2"
+                android:layout_gravity="center_vertical|center"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg1"
+                android:textAlignment="textStart"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:onClick="buttonClick"/>
+
+        <Button
+                android:text="   Semester Three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/sem3"
+                android:layout_gravity="center_vertical|center"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg1"
+                android:textAlignment="textStart"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:onClick="buttonClick"/>
+
+
+        <Button
                 android:text="   Semester Four"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -43,33 +86,8 @@
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
                 android:onClick="buttonClick"/>
 
-        <Button
-                android:text="   Semester Two"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:id="@+id/sem2"
-                android:layout_gravity="center_vertical|center"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/bg1"
-                android:textAlignment="textStart"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:onClick="buttonClick"/>
 
-        <Button
-                android:text="   Semester One"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:id="@+id/sem1"
-                android:layout_gravity="center_vertical|center"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/bg1"
-                android:textAlignment="textStart"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:onClick="buttonClick"/>
+
 
         <Button
                 android:text="   Semester Six"
@@ -85,19 +103,7 @@
                 android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
                 android:onClick="buttonClick"/>
 
-        <Button
-                android:text="   Semester Three"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:id="@+id/sem3"
-                android:layout_gravity="center_vertical|center"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/bg1"
-                android:textAlignment="textStart"
-                android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:onClick="buttonClick"/>
+
     </LinearLayout>
 
 </ScrollView>

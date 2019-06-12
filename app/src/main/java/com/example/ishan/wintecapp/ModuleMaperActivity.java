@@ -42,7 +42,11 @@ public class ModuleMaperActivity extends AppCompatActivity {
         ListView customListView = (ListView) findViewById(R.id.moduleList);
         customListView.setAdapter(customListAdapter);
 
-
+        if(getIntent() != null)
+        {
+            String semester = getIntent().getStringExtra("semester");
+            actionBar.setTitle(semester);
+        }
 
     }
 

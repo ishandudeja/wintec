@@ -21,29 +21,38 @@ public class SemesterActivity extends AppCompatActivity {
     }
 
     public void buttonClick(View view) {
+
+        String sem="";
         switch (view.getId()) {
             case R.id.sem1:
+                sem="Semester One";
                 Toast.makeText(this, "Button 1 Clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sem2:
+                sem="Semester Two";
                 Toast.makeText(this, "Button 2 Clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sem3:
+                sem="Semester Three";
                 Toast.makeText(this, "Button 3 Clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sem4:
+                sem="Semester Four";
                 Toast.makeText(this, "Button 4 Clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sem5:
+                sem="Semester Five";
                 Toast.makeText(this, "Button 5 Clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sem6:
+                sem="Semester Six";
                 Toast.makeText(this, "Button 5 Clicked", Toast.LENGTH_SHORT).show();
                 break;
         }
 
 
         Intent intent= new Intent(SemesterActivity.this,ModuleMaperActivity.class);
+        intent.putExtra("semester", sem);
         startActivity(intent);
 
 
