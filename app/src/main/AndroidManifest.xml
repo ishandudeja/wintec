@@ -36,16 +36,14 @@
         <activity
                 android:name=".TaskMasterActivity"
                 android:label="@string/title_activity_task_master"
-                android:theme="@style/AppTheme.NoActionBar"
-                android:parentActivityName=".MainActivity">
-            <!--<meta-data android:name="android.app.searchable"-->
-            <!--android:resource="@xml/searchable" />-->
+                android:parentActivityName=".MainActivity"
+                android:theme="@style/AppTheme.NoActionBar">
 
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.SEARCH" />-->
-            <!--</intent-filter>-->
+
         </activity>
-        <activity android:name=".SemesterActivity">
+        <activity android:name=".SemesterActivity"
+                  android:label="Semesters"
+                  android:parentActivityName=".TaskMasterActivity">
         </activity>
         <activity
                 android:name=".AboutAtivity"
@@ -56,6 +54,19 @@
                 android:name=".ModuleActivity"
                 android:label="Dashboard"
                 android:parentActivityName=".ModuleListActivity">
+        </activity>
+        <activity android:name=".ModuleMaperActivity"
+            android:label="Module Maper"
+                  android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".SemesterActivity">
+             <meta-data android:name="android.app.searchable"
+             android:resource="@xml/searchable" />
+
+            <meta-data android:name="android.app.default_searchable"
+                       android:value=".ModuleMaperActivity" />
+             <intent-filter>
+             <action android:name="android.intent.action.SEARCH" />
+             </intent-filter>
         </activity>
     </application>
 

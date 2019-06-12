@@ -19,11 +19,11 @@ public class StudentListAdapter extends ArrayAdapter<Student> implements Seriali
 
     public Activity activity;
 
-    public StudentListAdapter(Context act, ArrayList<Student> students) {
+    public StudentListAdapter(Activity act, ArrayList<Student> students) {
 
         super(act, R.layout.student_card_list, students);
 
-       // activity = act;
+        activity = act;
     }
 
     @Override
@@ -57,6 +57,10 @@ public class StudentListAdapter extends ArrayAdapter<Student> implements Seriali
         btnmap.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
+                Intent intent=new Intent(activity,SemesterActivity.class);
+                activity.startActivity(intent);
+
                 Log.i("search" ,"map click");
             }
         });
