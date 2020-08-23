@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class ModuleListAdapter extends ArrayAdapter<Module> implements Serializable {
     public Activity activity;
+
     public ModuleListAdapter(Activity context, ArrayList<Module> modules) {
         super(context, R.layout.module_card_list, modules);
 
@@ -33,18 +34,26 @@ public class ModuleListAdapter extends ArrayAdapter<Module> implements Serializa
         TextView mCode = (TextView) customView.findViewById(R.id.mCode);
         TextView mTitle = (TextView) customView.findViewById(R.id.mTitle);
         TextView mDescription = (TextView) customView.findViewById(R.id.mDescription);
-        CardView cardView=(CardView) customView.findViewById(R.id.moduleCard) ;
+        TextView level = customView.findViewById(R.id.txtlevel);
+        TextView cridit = customView.findViewById(R.id.txtCridit);
+
+        level.setText("Level: " + singleItem.get_level());
+        cridit.setText("Cridit: 15");
+        CardView cardView = (CardView) customView.findViewById(R.id.moduleCard);
         // ImageView buckysImage = (ImageView) customView.findViewById(R.id.imageView);
 
         // dynamically update the text from the array
         mCode.setText(singleItem.get_code());
-        mTitle.setText("Title: " + singleItem.get_title());
+        mTitle.setText(singleItem.get_title() + ":");
         mDescription.setText("Description: " + singleItem.get_description());
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(activity, ModuleEditActivity.class);
+                intent.putExtra("module_id",singleItem.get_id());
+                activity.startActivity(intent);
                 Toast.makeText(activity, singleItem.get_code(),
                         Toast.LENGTH_SHORT).show();
             }

@@ -1,20 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-                android:tag="student_master"
-             tools:context=".StudentMasterFragment">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:tag="student_master"
+              android:background="@color/cardview_light_background"
+              tools:context=".StudentMasterFragment"
+              android:id="@+id/studentMastertFrag"
+              android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-    <TextView
-            android:text="TextView"
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="103dp"
-            android:id="@+id/textView3"
-            android:layout_centerHorizontal="true"/>
 
-</RelativeLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageButton
+                    android:text="Button"
+                    android:layout_width="88dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/ic_menu_camera"
+                    android:layout_alignBottom="@+id/imgStudent"
+                    android:adjustViewBounds="true"
+                    android:id="@+id/btnImgChange"
+                    android:padding="2dp"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:text="Email Address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignStart="@+id/imgStudent"
+                        android:id="@+id/textView2"/>
+
+                <EditText
+                        android:layout_marginStart="22dp"
+                        android:layout_marginEnd="22dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName|textWebEmailAddress"
+
+                        android:layout_alignStart="@+id/imgStudent"
+                        android:id="@+id/editTextName"
+                        android:layout_below="@+id/textView2"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+                android:text="Student Enrolment Number"
+                android:layout_marginStart="22dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_alignStart="@+id/imgStudent"
+                android:id="@+id/textView3"/>
+
+        <EditText
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName|number"
+
+                android:layout_below="@+id/textView3"
+                android:layout_alignStart="@+id/imgStudent"
+                android:id="@+id/editTextStudCode"/>
+
+        <TextView
+                android:layout_marginStart="22dp"
+                android:text="Pathway"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/spinner"
+                android:layout_alignStart="@+id/imgStudent"
+                android:id="@+id/textView4"/>
+
+        <Spinner
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:spinnerMode="dropdown"
+                android:layout_height="57dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                />
+
+        <TextView
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="10dp"
+                android:text="Session Start Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/editTextSessionStart"
+                android:layout_alignStart="@+id/imgStudent"
+                android:id="@+id/textView5"/>
+
+        <EditText
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_alignStart="@+id/imgStudent"
+                android:id="@+id/editTextSessionStart"/>
+
+
+        <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="22dp"
+                android:text="Session End Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/editTextSessionEnd"
+                android:layout_alignStart="@+id/imgStudent"
+                android:id="@+id/textView6"/>
+
+        <EditText
+                android:layout_marginStart="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:layout_marginEnd="22dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_alignStart="@+id/imgStudent"
+                android:id="@+id/editTextSessionEnd"/>
+
+        <Button
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:text="Save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+android:background="@drawable/btnbarkground"
+                android:id="@+id/btnSave"
+                />
+
+</LinearLayout>
+        </ScrollView>

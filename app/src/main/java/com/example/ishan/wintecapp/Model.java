@@ -1,20 +1,20 @@
 package com.example.ishan.wintecapp;
 
 public class Model {
-    private String name;
+    private Module _module;
     private boolean selected;
 
-    public Model(String name) {
-        this.name = name;
-        selected = false;
+    public Model(Module module) {
+        this._module = module;
+        selected = module.is_isCore();
     }
 
-    public String getName() {
-        return name;
+    public Module get_module() {
+        return this._module;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void set_module(Module module) {
+        this._module = module;
     }
 
     public boolean isSelected() {

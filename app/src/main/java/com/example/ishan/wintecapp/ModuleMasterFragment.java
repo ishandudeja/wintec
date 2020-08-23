@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.*;
@@ -17,15 +19,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class ModuleMasterFragment extends ListFragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener, Serializable {
+public class ModuleMasterFragment extends ListFragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener, Serializable, Parcelable {
     ArrayList<Module> mAllValues;
     private ArrayAdapter<Module> mAdapter;
     private Context mContext;
 
     private OnFragmentInteractionListener mListener;
-
+    DBHelper db;
     public ModuleMasterFragment() {
         // Required empty public constructor
+
+
     }
 
 
@@ -33,7 +37,12 @@ public class ModuleMasterFragment extends ListFragment implements SearchView.OnQ
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        populateList();
+       // populateList();
+        db = new DBHelper(getActivity(), null, null, 1);
+        mAllValues=  db.getModule();
+
+        mAdapter = new ModuleListAdapter(getActivity(), mAllValues);
+        setListAdapter(mAdapter);
     }
 
     @Override
@@ -54,6 +63,8 @@ public class ModuleMasterFragment extends ListFragment implements SearchView.OnQ
         String item = (String) listView.getAdapter().getItem(position);
         if (getActivity() instanceof OnItem1SelectedListener) {
             ((OnItem1SelectedListener) getActivity()).OnItem1SelectedListener(item);
+
+
         }
         getFragmentManager().popBackStack();
     }
@@ -134,6 +145,15 @@ public class ModuleMasterFragment extends ListFragment implements SearchView.OnQ
         return true;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+    }
 
 
     public interface OnItem1SelectedListener {
@@ -144,38 +164,38 @@ public class ModuleMasterFragment extends ListFragment implements SearchView.OnQ
 
         mAllValues = new ArrayList<>();
 
-        mAllValues.add( new Module( "Afghanistan","Info",7,15,"description",true,1));
-        mAllValues.add(new Module( "Åland Islands","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Albania","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Algeria","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "American Samoa","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "AndorrA","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Angola","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Anguilla","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Antarctica","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Antigua and Barbuda","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Argentina","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Armenia","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Aruba","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Australia","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Austria","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Azerbaijan","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Bahamas","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Bahrain","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Bangladesh","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Barbados","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Belarus","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Belgium","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Belize","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Benin","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Bermuda","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Bhutan","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Bolivia","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Bosnia and Herzegovina","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Botswana","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Bouvet Island","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "Brazil","Info",7,15,"description",true,1));;
-        mAllValues.add(new Module( "British Indian Ocean Territory","Info",7,15,"description",true,1));;
+        mAllValues.add( new Module( "Afghanistan","Info",7,15,"description",true,1,1));
+        mAllValues.add(new Module( "Åland Islands","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Albania","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Algeria","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "American Samoa","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "AndorrA","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Angola","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Anguilla","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Antarctica","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Antigua and Barbuda","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Argentina","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Armenia","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Aruba","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Australia","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Austria","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Azerbaijan","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Bahamas","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Bahrain","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Bangladesh","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Barbados","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Belarus","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Belgium","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Belize","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Benin","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Bermuda","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Bhutan","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Bolivia","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Bosnia and Herzegovina","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Botswana","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Bouvet Island","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "Brazil","Info",7,15,"description",true,1,2));
+        mAllValues.add(new Module( "British Indian Ocean Territory","Info",7,15,"description",true,1,2));
      
 
         mAdapter = new ModuleListAdapter(getActivity(), mAllValues);

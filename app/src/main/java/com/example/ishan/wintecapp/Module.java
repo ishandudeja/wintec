@@ -1,6 +1,8 @@
 package com.example.ishan.wintecapp;
 
-public class Module {
+import java.io.Serializable;
+
+public class Module implements Serializable {
     private int _id;
     private String _code;
     private String _title;
@@ -8,12 +10,12 @@ public class Module {
     private int _credit;
     private String _description;
     private boolean _isCore;
-    private int _pathway_id;
-
+    private Integer  _pathway_id;
+    private int _semester;
     public Module() {
     }
 
-    public Module(String code, String title, int level, int credit, String description, boolean isCore, int pathway_id) {
+    public Module(String code, String title, int level, int credit, String description, boolean isCore, Integer  pathway_id,int semester) {
         this._code = code;
         this._title = title;
         this._level = level;
@@ -21,6 +23,7 @@ public class Module {
         this._description = description;
         this._isCore = isCore;
         this._pathway_id = pathway_id;
+        this._semester=semester;
 
     }
 
@@ -81,11 +84,21 @@ public class Module {
         this._isCore = _isCore;
     }
 
-    public int getPathway_id() {
+
+
+    public Integer get_pathway_id() {
         return _pathway_id;
     }
 
-    public void setPathway_id(int pathway_id) {
-        this._pathway_id = pathway_id;
+    public void set_pathway_id(Integer _pathway_id) {
+        this._pathway_id = _pathway_id;
+    }
+
+    public int get_semester() {
+        return _semester;
+    }
+
+    public void set_semester(int _semester) {
+        this._semester = _semester;
     }
 }

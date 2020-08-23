@@ -3,14 +3,12 @@ package com.example.ishan.wintecapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,37 +35,61 @@ public class StudentListAdapter extends ArrayAdapter<Student> implements Seriali
         TextView itemText = (TextView) customView.findViewById(R.id.sName);
         TextView sID = (TextView) customView.findViewById(R.id.sID);
         TextView sCourse = (TextView) customView.findViewById(R.id.sCourse);
-        Button btnedit=(Button) customView.findViewById(R.id.btnEdit);
-        Button btnmap=(Button) customView.findViewById(R.id.btnMap);
-        // ImageView buckysImage = (ImageView) customView.findViewById(R.id.imageView);
+        TextView sessionStart = customView.findViewById(R.id.semesterStart);
+        TextView sessionEnd = customView.findViewById(R.id.semesterEnd);
+        Button btnedit = (Button) customView.findViewById(R.id.btnEdit);
+        Button btnmap = (Button) customView.findViewById(R.id.btnMap);
+        ImageView buckysImage = (ImageView) customView.findViewById(R.id.imageView2);
 
         // dynamically update the text from the array
         itemText.setText(singleTripItem.get_name());
-        sID.setText("Student ID: " + singleTripItem.get_id());
-        sCourse.setText("Course: " + singleTripItem.get_pathway_id());
+        String pathway = "";
+        switch (singleTripItem.get_id()) {
+            case 1:
+                pathway = "Software Engineer";
+                break;
+            case 2:
+                pathway = "Database Architecture";
+                break;
+            case 3:
+                pathway = "Networking";
+                break;
+            case 4:
+                pathway = "Web Development";
+                break;
+        }
 
-        btnedit.setOnClickListener(new View.OnClickListener(){
+
+        sID.setText("Student ID: " + singleTripItem.get_student_id());
+        sCourse.setText("Pathway: " + pathway);
+        sessionStart.setText("Session - Start: " + singleTripItem.get_semesterStart());
+        sessionEnd.setText("End: " + singleTripItem.get_semesterEnd());
+        btnedit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                Log.i("search" ,"edit click");
+            public void onClick(View v) {
+                Log.i("search", "edit click");
             }
         });
+        buckysImage.setImageBitmap(singleTripItem.get_image());
 
-
-        btnmap.setOnClickListener(new View.OnClickListener(){
+        btnmap.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
 
-                Intent intent=new Intent(activity,SemesterActivity.class);
+
+                SharedPreferences studData = activity.getSharedPreferences("studInfo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = studData.edit();
+                editor.putInt("student_id", singleTripItem.get_id());
+                editor.putInt("user_id", singleTripItem.get_user_id());
+                editor.putInt("pathway", singleTripItem.get_pathway_id());
+                editor.apply();
+
+                Intent intent = new Intent(activity, SemesterActivity.class);
                 activity.startActivity(intent);
 
-                Log.i("search" ,"map click");
+                Log.i("search", "map click");
             }
         });
-
-
-
-
 
 
         // using the same image every time

@@ -22,13 +22,26 @@ public class ModuleActivity extends AppCompatActivity {
         tabLayout =(TabLayout) findViewById(R.id.tabLayout_id);
         viewPager=(ViewPager) findViewById(R.id.viewPager_id);
 
+        Bundle appleData = getIntent().getExtras();
+        if (appleData== null){
+            return;
+        }
+        Module module = (Module) appleData.getSerializable("moduleData");
+
+
         ViewPageAdapter adapter=new ViewPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OverviewFragment(),"Overview");
+
+        OverviewFragment overviewFragment=new OverviewFragment();
+        overviewFragment.set_module(module);
+        adapter.addFragment(overviewFragment,"Overview");
         adapter.addFragment(new TopicFragment(),"Topics");
         adapter.addFragment(new AssessmentsFragment(),"Assessments");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+
+
 
     }
 }

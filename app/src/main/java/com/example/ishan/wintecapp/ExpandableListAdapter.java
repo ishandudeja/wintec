@@ -41,6 +41,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView code = null;
         TextView title=null;
         TextView description=null;
+        TextView level=null;
+        TextView crdit=null;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.module_card_list, null);
         }
@@ -52,10 +54,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
          description=convertView.findViewById(R.id.mDescription);
          description.setText(children.get_description());
 
+         level=convertView.findViewById(R.id.txtlevel);
+         crdit=convertView.findViewById(R.id.txtCridit);
+        level.setText("Level: "+children.get_level());
+        crdit.setText("credit: 15");
+
         convertView.findViewById(R.id.moduleCard).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(activity,ModuleActivity.class);
+                intent.putExtra("moduleData",children);
                  activity.startActivity(intent);
                 Toast.makeText(activity, children.get_title(),
                         Toast.LENGTH_SHORT).show();

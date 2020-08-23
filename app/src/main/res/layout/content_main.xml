@@ -61,7 +61,7 @@
                     app:cardCornerRadius="8dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    >
+                    android:id="@+id/card_se">
 
                 <LinearLayout
                         android:layout_gravity="center_horizontal|center_vertical"
@@ -71,20 +71,21 @@
                         android:layout_height="wrap_content">
 
                     <ImageView
-                            android:src="@drawable/ic_font_download_black_24dp"
+                            android:src="@drawable/software"
                             android:layout_gravity="center_horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="118dp"
                             android:contentDescription="@string/todo"/>
 
                     <TextView
-                            android:text="@string/me"
+                            android:text="Software Engineering"
                             android:textAlignment="center"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
 
@@ -103,7 +104,7 @@
                     app:cardCornerRadius="8dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    >
+                    android:id="@+id/card_db">
 
                 <LinearLayout
                         android:layout_gravity="center_horizontal|center_vertical"
@@ -113,20 +114,21 @@
                         android:layout_height="wrap_content">
 
                     <ImageView
-                            android:src="@drawable/ic_font_download_black_24dp"
+                            android:src="@drawable/database"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="130dp"
                             android:contentDescription="@string/todo"/>
 
                     <TextView
-                            android:text="@string/family"
+                            android:text="Database Architecture"
                             android:textAlignment="center"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
 
@@ -148,7 +150,7 @@
                     app:cardCornerRadius="8dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    >
+                    android:id="@+id/card_ne">
 
                 <LinearLayout
                         android:layout_gravity="center_horizontal|center_vertical"
@@ -158,20 +160,21 @@
                         android:layout_height="wrap_content">
 
                     <ImageView
-                            android:src="@drawable/ic_font_download_black_24dp"
+                            android:src="@drawable/networking"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="133dp"
                             android:contentDescription="@string/todo"/>
 
                     <TextView
-                            android:text="@string/lovely"
+                            android:text="Server Networking"
                             android:textAlignment="center"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
 
@@ -190,7 +193,7 @@
                     app:cardCornerRadius="8dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    >
+                    android:id="@+id/card_wd">
 
                 <LinearLayout
                         android:layout_gravity="center_horizontal|center_vertical"
@@ -200,19 +203,20 @@
                         android:layout_height="wrap_content">
 
                     <ImageView
-                            android:src="@drawable/ic_font_download_black_24dp"
+                            android:src="@drawable/webdesign"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="135dp"/>
 
                     <TextView
-                            android:text="@string/team"
+                            android:text="Web Development"
                             android:textAlignment="center"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
 

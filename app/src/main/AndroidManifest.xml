@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
             android:allowBackup="true"
@@ -38,12 +40,11 @@
                 android:label="@string/title_activity_task_master"
                 android:parentActivityName=".MainActivity"
                 android:theme="@style/AppTheme.NoActionBar">
-
-
         </activity>
-        <activity android:name=".SemesterActivity"
-                  android:label="Semesters"
-                  android:parentActivityName=".TaskMasterActivity">
+        <activity
+                android:name=".SemesterActivity"
+                android:label="Semesters"
+                android:parentActivityName=".TaskMasterActivity">
         </activity>
         <activity
                 android:name=".AboutAtivity"
@@ -55,18 +56,30 @@
                 android:label="Dashboard"
                 android:parentActivityName=".ModuleListActivity">
         </activity>
-        <activity android:name=".ModuleMaperActivity"
-            android:label="Module Maper"
-                  android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".SemesterActivity">
-             <meta-data android:name="android.app.searchable"
-             android:resource="@xml/searchable" />
+        <activity
+                android:name=".ModuleMaperActivity"
+                android:label="Module Maper"
+                android:parentActivityName=".SemesterActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                    android:name="android.app.searchable"
+                    android:resource="@xml/searchable"/>
+            <meta-data
+                    android:name="android.app.default_searchable"
+                    android:value=".ModuleMaperActivity"/>
 
-            <meta-data android:name="android.app.default_searchable"
-                       android:value=".ModuleMaperActivity" />
-             <intent-filter>
-             <action android:name="android.intent.action.SEARCH" />
-             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".DeclarationActivity"
+                android:label="Declaration">
+        </activity>
+        <activity android:name=".ModuleEditActivity"
+                  android:label="Edit Module"
+                  android:parentActivityName=".TaskMasterActivity"
+                >
         </activity>
     </application>
 

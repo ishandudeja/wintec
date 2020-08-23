@@ -20,18 +20,17 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
     DBHelper db;
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -70,6 +69,30 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.bg1));
+
+        SharedPreferences loginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        String userName = loginData.getString("userName",null);
+        LinearLayout layout=findViewById(R.id.email_login_form);
+        Button btnSignOut=findViewById(R.id.btnSignOUt);
+        if(userName!=null){
+
+            btnSignOut.setVisibility(View.VISIBLE);
+            layout.setVisibility(View.INVISIBLE);
+        }
+        else{
+
+            layout.setVisibility(View.VISIBLE);
+            btnSignOut.setVisibility(View.INVISIBLE);
+        }
+
+
+
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -98,6 +121,22 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mProgressView = findViewById(R.id.login_progress);
 
         db = new DBHelper(this, null, null, 1);
+    }
+
+    public void signOut(View v){
+
+        SharedPreferences loginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = loginData.edit();
+        editor.putString("userName", null);
+        editor.putInt("user_id", 0);
+        editor.putString("email", null);
+        editor.putBoolean("isAdmin",false);
+        editor.apply();
+
+        LinearLayout layout=findViewById(R.id.email_login_form);
+        layout.setVisibility(View.VISIBLE);
+        Button btnSignOut=findViewById(R.id.btnSignOUt);
+        btnSignOut.setVisibility(View.INVISIBLE);
     }
 
     private void populateAutoComplete() {
@@ -355,6 +394,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
             if (success) {
                 finish();
+
+                Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();

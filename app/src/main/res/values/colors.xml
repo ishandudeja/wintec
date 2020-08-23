@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorStatusBar">#ebb80f</color>
     <color name="colorTitleText">#fdfdfe</color>
+    <color name="colorCardBG">#f4db75</color>
 </resources>

@@ -1,30 +1,41 @@
 package com.example.ishan.wintecapp;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
-public class Student {
+public class Student implements Serializable {
     private int _id;
-    private  int _student_id;
+    private int _student_id;
     private String _name;
     private int _pathway_id;
-    private Date _semesterStart;
-    private Date _semesterEnd;
+    private String _semesterStart;
+    private String _semesterEnd;
     private boolean _isActive;
-    private Bitmap _image;
+    private byte[] _image;
     private int _user_id;
 
-    public Student(){}
-    public Student(int student_id,String name,int pathway_id,Date semesterStart,Date semesterEnd,boolean isActive,Bitmap image,int user_id){
-        this._student_id=student_id;
-        this._name=name;
-        this._pathway_id=pathway_id;
-        this._semesterEnd=semesterEnd;
-        this._semesterStart=semesterStart;
-        this._isActive=isActive;
-        this._image=image;
-        this._user_id=user_id;
+
+
+    public Student(int student_id, String name, int pathway_id, String semesterStart, String semesterEnd, boolean isActive, Bitmap bitmap, int user_id) {
+        this._student_id = student_id;
+        this._name = name;
+        this._pathway_id = pathway_id;
+        this._semesterEnd = semesterEnd;
+
+        this._semesterStart = semesterStart;
+        this._isActive = isActive;
+        if(bitmap!=null)
+        { ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        this._image = stream.toByteArray();}
+        this._user_id = user_id;
     }
 
     public int get_id() {
@@ -59,19 +70,19 @@ public class Student {
         this._pathway_id = _pathway_id;
     }
 
-    public Date get_semesterStart() {
+    public String get_semesterStart() {
         return _semesterStart;
     }
 
-    public void set_semesterStart(Date _semesterStart) {
+    public void set_semesterStart(String _semesterStart) {
         this._semesterStart = _semesterStart;
     }
 
-    public Date get_semesterEnd() {
+    public String get_semesterEnd() {
         return _semesterEnd;
     }
 
-    public void set_semesterEnd(Date _semesterEnd) {
+    public void set_semesterEnd(String _semesterEnd) {
         this._semesterEnd = _semesterEnd;
     }
 
@@ -84,12 +95,28 @@ public class Student {
     }
 
     public Bitmap get_image() {
+        // return _image;
+        return BitmapFactory.decodeByteArray(_image, 0, _image.length);
+
+    }
+
+    public byte[] get_Byte_image() {
+        // return _image;
+        // return BitmapFactory.decodeByteArray(_image, 0, _image.length);
         return _image;
     }
 
-    public void set_image(Bitmap _image) {
-        this._image = _image;
+    public void set_image(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+
+        this._image = stream.toByteArray();
     }
+    public void set_Byte_image(byte[] bitmap) {
+
+        this._image = bitmap;
+    }
+
 
     public int get_user_id() {
         return _user_id;

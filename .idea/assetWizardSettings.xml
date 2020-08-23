@@ -5,7 +5,50 @@
       <map>
         <entry key="imageWizard">
           <value>
-            <PersistentState />
+            <PersistentState>
+              <option name="children">
+                <map>
+                  <entry key="imageAssetPanel">
+                    <value>
+                      <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="launcher">
+                              <value>
+                                <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="foregroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="42" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="fdf952" />
+                                      <entry key="foregroundImage" value="C:\Users\ishan\Desktop\wintecApp\app\src\main\res\drawable\app_logo1.png" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </PersistentState>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </PersistentState>
           </value>
         </entry>
         <entry key="vectorWizard">
@@ -23,7 +66,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/JetBrains/IntelliJ%20IDEA%202018.3.4/plugins/android/lib/android.jar!/images/material_design_icons/hardware/ic_keyboard_arrow_right_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/JetBrains/IntelliJ%20IDEA%202018.3.4/plugins/android/lib/android.jar!/images/material_design_icons/notification/ic_event_note_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,7 +76,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_keyboard_arrow_right_black_24dp" />
+                            <entry key="outputName" value="ic_event_note_black_24dp" />
                             <entry key="sourceFile" value="C:\Users\ishan" />
                           </map>
                         </option>
